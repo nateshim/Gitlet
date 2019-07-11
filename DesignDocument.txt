@@ -1,0 +1,17 @@
+Gitlet Design:
+
+
+- To properly implement this version-control system, we will be implementing 4 different classes to support our Main.java file in gitlet. These four will be:
+1. Commit.java - Will be used to handle commits and represent them. Will take in a parentId and message and will also have a timestamp and a HashMap of contents to string files to their hash codes. Proposed Data Structure: Commit 
+2. Staging Area.java - will be the main area where files (or Commits) will be stored when add() is called. If a file already exists in the Staging Area, it will throw an Exception and not add the file. Every time a commit is called, this StagingArea will be cleared. If remove(rm) is called, the file will be removed from the Staging Area. Proposed Data Structure: ArrayList<String>.
+3. Tree.java - Will be basically an ArrayList of Commits to hold the current Commit and past Commits and keep track of the head and also eventually cover branches as well. Proposed Data Structure: ArrayList<Commit>
+
+
+Handling the Commands:
+
+add():
+- Every time a user adds a file to gitlet, the program will accept it into the StagingArea, where it will be stored until a commit is called or the user chooses to delete the file. If the file already exists in the StagingArea, it will not be added and the program will output a message informing the user. In order to add the file, the program will convert the file name given into a serializable hashcode and store it in the Staging Area as a hashcode.
+commit():
+- When a commit is called, the program will create a new Commit Object where it will store all the files currently in the StagingArea, attach the current date in the timestamp, update the Tree by adding the new Commit Object to it, and update the Commit's parent etc. During this process, the hashcodes in the StagingArea will be converted back into text files to be stored in the Commit Object which will itself be stored in the Tree.
+
+
